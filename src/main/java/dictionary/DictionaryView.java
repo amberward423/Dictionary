@@ -15,7 +15,7 @@ public class DictionaryView {
     private DictionaryController controller;
 
 
-    public DictionaryView(){
+    public DictionaryView(Stage stage){
         wordField = new TextField();
         searchButton = new Button("Search");
         meaningLabel = new Label();
@@ -26,14 +26,17 @@ public class DictionaryView {
         controller = new DictionaryController();
         searchButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                wordField.getText();
+                String word = wordField.getText();
+                String meaning = controller.searchWord(word);
+                meaningLabel.setText(meaning);
             }
         });
-
-
-
-
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
+
+
 }
 
